@@ -88,6 +88,7 @@ public class AutoRedUpstageLeft extends LinearOpMode {
 
         webcam1.setPipeline(new RedCubePipeline());
 
+
         webcam1.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             public void onOpened() {
                 webcam1.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
@@ -111,12 +112,15 @@ public class AutoRedUpstageLeft extends LinearOpMode {
         double noCube = 0;
         if (cX < leftThreshold) {
             telemetry.addData("driving","left");
+            webcam1.stopStreaming();
             driveLeft();
         } else if (cX > rightThreshold || cX < noCube) {
             telemetry.addLine("driving right");
+            webcam1.stopStreaming();
             driveRight();
         } else if (cX < rightThreshold && cX > leftThreshold) {
             telemetry.addLine("driving center");
+            webcam1.stopStreaming();
             driveCenter();
         }
     }
@@ -137,13 +141,13 @@ public class AutoRedUpstageLeft extends LinearOpMode {
         sleep(300);
         move(0.2,-0.25,0.25);
         sleep(100);
-        move(0.6,-0.5,-0.5);
+        move(0.45,-0.5,-0.5);
         OPENCLAW();
 
         sleep(300);
         move(0.4,0.3,0.3);
         move(1.4,-0.3,0.3);
-        move(0.7,0.7,0.7);
+        move(0.7,-0.7,-0.7);
     }
 
     public void driveLeft() {
@@ -163,14 +167,14 @@ public class AutoRedUpstageLeft extends LinearOpMode {
         sleep(300);
         move(.6,-0.1,0.1);
         sleep(400);
-        move(.7,-0.1,-0.1);
+        move(.6,-0.1,-0.1);
         OPENCLAW();
 
         sleep(500);
         move(.3,0.5,0.5);
         move(1.3,-0.5,0.5);
         sleep(200);
-        move(0.7,-0.7,-0.7);
+        move(1.3,-0.7,-0.7);
 
 
     }

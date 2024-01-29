@@ -111,12 +111,15 @@ public class AutoRedUpstageRight extends LinearOpMode {
         double noCube = 0;
         if (cX < leftThreshold) {
             telemetry.addData("driving","left");
+            webcam1.stopStreaming();
             driveLeft();
         } else if (cX > rightThreshold || cX < noCube) {
             telemetry.addLine("driving right");
+            webcam1.stopStreaming();
             driveRight();
         } else if (cX < rightThreshold && cX > leftThreshold) {
             telemetry.addLine("driving center");
+            webcam1.stopStreaming();
             driveCenter();
         }
     }
@@ -137,12 +140,12 @@ public class AutoRedUpstageRight extends LinearOpMode {
         sleep(300);
         move(0.2,-0.25,0.25);
         sleep(100);
-        move(0.6,-0.5,-0.5);
+        move(0.30,-0.5,-0.5);
         OPENCLAW();
         sleep(300);
         move(0.4,0.3,0.3);
-        move(1.4,0.3,-0.3);
-        move(0.7,0.5,0.5);
+        move(1.2,0.3,-0.3);
+        move(0.9,-0.5,-0.5);
     }
 
     public void driveLeft() {
