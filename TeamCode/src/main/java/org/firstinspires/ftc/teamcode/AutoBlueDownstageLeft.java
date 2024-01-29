@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Autonomous
-public class BlueAuto extends LinearOpMode {
+public class AutoBlueDownstageLeft extends LinearOpMode {
 
     OpenCvWebcam webcam1 = null;
     double cX = -1; // Use -1 to indicate no detection initially
@@ -106,7 +106,6 @@ public class BlueAuto extends LinearOpMode {
         }
     }
 //}
-
     public void driveCamera(double cX) {
         //boolean noCube = false;
         if (cX < leftThreshold) {
@@ -130,20 +129,25 @@ public class BlueAuto extends LinearOpMode {
         sleep(300);
         move(0.55, 0.5, 0.5);
         sleep(300);
-        move( 1.4, 0.5,-0.5);
-        SCORETILT();
-        usePitch(-1,800);
-        move(1.9, -0.5, -0.5);
-        sleep(300);
-        move(0.6,0.25,-0.25);
-        sleep(100);
-        move(0.6,-0.5,-0.5);
-        OPENCLAW();
-        sleep(300);
-        move(0.4,0.3,0.3);
-        move(1.4,-0.3,0.3);
-        move(0.7,-0.5,-0.5);
 
+        //park left
+        //move(0.4,0.3,0.3);
+        turnTo(60);
+       // move(1,0.5,0.5);
+
+        //        move( 1.4, 0.5,-0.5);
+//        SCORETILT();
+//        usePitch(-1,800);
+//        move(1.9, -0.5, -0.5);
+//        sleep(300);
+//        move(0.6,0.25,-0.25);
+//        sleep(100);
+//        move(0.6,-0.5,-0.5);
+//        OPENCLAW();
+//        sleep(300);
+//        move(0.4,0.3,0.3);
+//        move(1.4,-0.3,0.3);
+//        move(0.7,-0.5,-0.5);
     }
 
     public void driveLeft() {
@@ -152,19 +156,24 @@ public class BlueAuto extends LinearOpMode {
         move(0.6,0.5,-0.5);
         move(0.5,-0.5,-0.5);
         sleep(300);
-        move(0.4, 0.5, 0.5);
-        move(0.65, 0.5, -0.5);
-        SCORETILT();
-        usePitch(-1,800);
-        move(2.3,-0.5,-0.5);
-        sleep(400);
-        OPENCLAW();
-        sleep(500);
-        move(.3,0.5,0.5);
-        move(1.4,0.5,-0.5);
+        move(1.35, 0.5, 0.5);
+//
+        //left parking
+        move(0.7, 0.3, -0.3);
         sleep(200);
-        move(0.5,-0.5,-0.5);
+        move(5.5,-0.5,-0.5);
 
+        //move(0.65, 0.5, -0.5);
+//        SCORETILT();
+//        usePitch(-1,800);
+//        move(2.3,-0.5,-0.5);
+//        sleep(400);
+//        OPENCLAW();
+//        sleep(500);
+//        move(.3,0.5,0.5);
+//        move(1.4,0.5,-0.5);
+//        sleep(200);
+//        move(0.5,-0.5,-0.5);
 
     }
 
@@ -173,13 +182,17 @@ public class BlueAuto extends LinearOpMode {
       move(1.7, -0.4, -0.4);
       sleep(500);
       move(0.3,0.5,0.5);
-      move(1.25,0.5,-0.5);
-      SCORETILT();
-      usePitch(-1,800);
-      move(2.4,-0.3,-0.3);
-      OPENCLAW();
-      move(1.3,-0.5,0.5);
-      move(1,-0.5,-0.5);
+//      move(1.25,0.5,-0.5);
+//      SCORETILT();
+//      usePitch(-1,800);
+//      move(2.4,-0.3,-0.3);
+//      OPENCLAW();
+//      move(1.3,-0.5,0.5);
+//      move(1,-0.5,-0.5);
+        //left parking
+        //move(0.4,0.5,0.5);
+        turn(60);
+        //move(1,0.5,0.5);
     }
 
 
@@ -468,14 +481,14 @@ public class BlueAuto extends LinearOpMode {
                 Imgproc.putText(input, label, new Point(cX + 10, cY), Imgproc.FONT_HERSHEY_COMPLEX, 0.5, new Scalar(0, 255, 0), 2);
                 Imgproc.circle(input, new Point(cX, cY), 5, new Scalar(0, 255, 0), -1);
                 if (cX < leftThreshold) {
-                    telemetry.addLine("Left");
+                    telemetry.addLine("left");
                     telemetry.update();
 
                 }else if (cX < rightThreshold && cX > leftThreshold) {
-                    telemetry.addLine("Middle");
+                    telemetry.addLine("middle");
                     telemetry.update();
                 } else if (cX > rightThreshold) {
-                    telemetry.addLine("Right");
+                    telemetry.addLine("right");
                     telemetry.update();
                 }
                 telemetry.update();
