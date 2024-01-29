@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Autonomous
-public class BlueAuto_DownStage extends LinearOpMode {
+public class AutoRedDownstageLeft extends LinearOpMode {
 
     OpenCvWebcam webcam1 = null;
     double cX = -1; // Use -1 to indicate no detection initially
@@ -51,14 +51,14 @@ public class BlueAuto_DownStage extends LinearOpMode {
     private Orientation lastAngles = new Orientation();
     private double currAngle = 0.0;
 
+
     double cY = 0;
     double width = 0;
 
     public static final double objectWidthInRealWorldUnits = 3.75;
     public static final double focalLength = 728;
-
-    double leftThreshold=500;
-    double rightThreshold=1000;
+    double leftThreshold = 500;
+    double rightThreshold = 1000;
 
 
 
@@ -86,7 +86,7 @@ public class BlueAuto_DownStage extends LinearOpMode {
 
         webcam1 = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
 
-        webcam1.setPipeline(new BlueCubePipeline());
+        webcam1.setPipeline(new RedCubePipeline());
 
         webcam1.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             public void onOpened() {
@@ -108,11 +108,11 @@ public class BlueAuto_DownStage extends LinearOpMode {
 //}
 
     public void driveCamera(double cX) {
-        boolean noCube = false;
+        double noCube = 0;
         if (cX < leftThreshold) {
-            telemetry.addLine("driving left");
+            telemetry.addData("driving","left");
             driveLeft();
-        } else if (cX > rightThreshold || noCube == true) {
+        } else if (cX > rightThreshold || cX < noCube) {
             telemetry.addLine("driving right");
             driveRight();
         } else if (cX < rightThreshold && cX > leftThreshold) {
@@ -130,56 +130,53 @@ public class BlueAuto_DownStage extends LinearOpMode {
         sleep(300);
         move(0.55, 0.5, 0.5);
         sleep(300);
-//        move( 1.4, 0.5,-0.5);
-//        SCORETILT();
-//        usePitch(-1,800);
-//        move(1.9, -0.5, -0.5);
-//        sleep(300);
-//        move(0.6,0.25,-0.25);
-//        sleep(100);
-//        move(0.6,-0.5,-0.5);
-//        OPENCLAW();
-//        sleep(300);
-//        move(0.4,0.3,0.3);
-//        move(1.4,-0.3,0.3);
-//        move(0.7,-0.5,-0.5);
-
+        move(0.6, 0.5, -0.5);
+        move(0.8, -0.5, 0.5);
+        move(0.8, 0.5, 0.5);
+//
     }
 
     public void driveLeft() {
         CLOSECLAW();
         move(0.7, -0.5, -0.5);
-        move(0.6,0.5,-0.5);
-        move(0.5,-0.5,-0.5);
         sleep(300);
-        move(0.4, 0.5, 0.5);
-//        move(0.65, 0.5, -0.5);
+        move(0.45,0.3,-0.4);
+        sleep(300);
+        move(0.65,-0.5,-0.5);
+//        sleep(300);
+//        move(0.85, 0.5, 0.5);
+//        sleep(300);
+//        move(1.6, -0.5, 0.3);
 //        SCORETILT();
-//        usePitch(-1,800);
-//        move(2.3,-0.5,-0.5);
+//        usePitch(-1,900);
+//        move(1.8,-0.5,-0.5);
+//        sleep(300);
+//        move(.6,-0.1,0.1);
 //        sleep(400);
+//        move(.7,-0.1,-0.1);
 //        OPENCLAW();
 //        sleep(500);
 //        move(.3,0.5,0.5);
-//        move(1.4,0.5,-0.5);
+//        move(1.3,0.5,-0.5);
 //        sleep(200);
-//        move(0.5,-0.5,-0.5);
+//        move(0.7,-0.5,-0.5);
 
 
     }
 
     public void driveCenter() {
-      CLOSECLAW();
-      move(1.7, -0.4, -0.4);
-      sleep(500);
-      move(0.3,0.5,0.5);
-//      move(1.25,0.5,-0.5);
-//      SCORETILT();
-//      usePitch(-1,800);
-//      move(2.4,-0.3,-0.3);
-//      OPENCLAW();
-//      move(1.3,-0.5,0.5);
-//      move(1,-0.5,-0.5);
+        CLOSECLAW();
+        move(1.7, -0.4, -0.4);
+        sleep(500);
+        move(0.3,0.5,0.5);
+        move(1.0, -0.5, -0.5);
+//        move(1.3,-0.5,0.5);
+//        SCORETILT();
+//        usePitch(-1,800);
+//        move(2.4,-0.3,-0.3);
+//        OPENCLAW();
+//        move(1.3,0.5,-0.5);
+//        move(1,-0.5,-0.5);
     }
 
 
@@ -187,6 +184,10 @@ public class BlueAuto_DownStage extends LinearOpMode {
         //532 is equivalent to 1ft
         distance = distance * 532;
         int edistance = Math.toIntExact(Math.round(distance));
+        FL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -195,6 +196,7 @@ public class BlueAuto_DownStage extends LinearOpMode {
         FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         if (left_power > 0) {
             FL.setTargetPosition(-edistance);
             BL.setTargetPosition(-edistance);
@@ -233,7 +235,11 @@ public class BlueAuto_DownStage extends LinearOpMode {
         BL.setPower(0);
         FR.setPower(0);
         BR.setPower(0);
-        sleep(150);
+        FL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        sleep(500);
     }
 
     private void strafe(double distance, double fL, double fR, double bL, double bR) {
@@ -432,22 +438,22 @@ public class BlueAuto_DownStage extends LinearOpMode {
         robot.setAllPower(0);
     }
 
-    class BlueCubePipeline extends OpenCvPipeline {
+    class RedCubePipeline extends OpenCvPipeline {
         @Override
         public Mat processFrame(Mat input) {
             // Preprocess the frame to detect yellow regions
-            Mat blueMask = preprocessFrame(input);
+            Mat redMask = preprocessFrame(input);
 
             // Find contours of the detected yellow regions
             List<MatOfPoint> contours = new ArrayList<>();
             Mat hierarchy = new Mat();
-            Imgproc.findContours(blueMask, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
+            Imgproc.findContours(redMask, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
 
             // Find the largest yellow contour (blob)
             MatOfPoint largestContour = findLargestContour(contours);
 
             if (largestContour != null) {
-                // Draw a blue outline around the largest detected object
+                // Draw a red outline around the largest detected object
                 Imgproc.drawContours(input, contours, contours.indexOf(largestContour), new Scalar(255, 0, 0), 2);
                 // Calculate the width of the bounding box
                 width = calculateWidth(largestContour);
@@ -467,6 +473,8 @@ public class BlueAuto_DownStage extends LinearOpMode {
                 String label = "(" + (int) cX + ", " + (int) cY + ")";
                 Imgproc.putText(input, label, new Point(cX + 10, cY), Imgproc.FONT_HERSHEY_COMPLEX, 0.5, new Scalar(0, 255, 0), 2);
                 Imgproc.circle(input, new Point(cX, cY), 5, new Scalar(0, 255, 0), -1);
+
+                //telemetry for cube sides
                 if (cX < leftThreshold) {
                     telemetry.addLine("left");
                     telemetry.update();
@@ -479,9 +487,8 @@ public class BlueAuto_DownStage extends LinearOpMode {
                     telemetry.update();
                 }
                 telemetry.update();
+
             }
-
-
 
             return input;
         }
@@ -490,18 +497,18 @@ public class BlueAuto_DownStage extends LinearOpMode {
             Mat hsvFrame = new Mat();
             Imgproc.cvtColor(frame, hsvFrame, Imgproc.COLOR_BGR2HSV);
 
-            Scalar lowerBlue = new Scalar(10, 50, 50);
-            Scalar upperBlue = new Scalar(80, 255, 255);
+            Scalar lowerRed = new Scalar(100, 100, 100);
+            Scalar upperRed = new Scalar(180, 255, 255);
 
 
-            Mat blueMask = new Mat();
-            Core.inRange(hsvFrame, lowerBlue, upperBlue, blueMask);
+            Mat redMask = new Mat();
+            Core.inRange(hsvFrame, lowerRed, upperRed, redMask);
 
             Mat kernel = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(5, 5));
-            Imgproc.morphologyEx(blueMask, blueMask, Imgproc.MORPH_OPEN, kernel);
-            Imgproc.morphologyEx(blueMask, blueMask, Imgproc.MORPH_CLOSE, kernel);
+            Imgproc.morphologyEx(redMask, redMask, Imgproc.MORPH_OPEN, kernel);
+            Imgproc.morphologyEx(redMask, redMask, Imgproc.MORPH_CLOSE, kernel);
 
-            return blueMask;
+            return redMask;
         }
 
         private MatOfPoint findLargestContour(List<MatOfPoint> contours) {
