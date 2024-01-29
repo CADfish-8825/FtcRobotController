@@ -31,8 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Autonomous
-public class BlueAuto extends LinearOpMode {
-
+public class AutoBlueDownstageRight extends LinearOpMode {
     OpenCvWebcam webcam1 = null;
     double cX = -1; // Use -1 to indicate no detection initially
     public DcMotor FL;
@@ -86,7 +85,7 @@ public class BlueAuto extends LinearOpMode {
 
         webcam1 = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
 
-        webcam1.setPipeline(new BlueCubePipeline());
+        webcam1.setPipeline(new AutoBlueDownstageRight.BlueCubePipeline());
 
         webcam1.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             public void onOpened() {
@@ -143,7 +142,10 @@ public class BlueAuto extends LinearOpMode {
 //        move(0.4,0.3,0.3);
 //        move(1.4,-0.3,0.3);
 //        move(0.7,-0.5,-0.5);
-
+        //park right
+        move(0.4,0.3,0.3);
+        move(1.4,0.5,0.3);
+        move(0.7,0.7,0.7);
     }
 
     public void driveLeft() {
@@ -164,15 +166,17 @@ public class BlueAuto extends LinearOpMode {
 //        move(1.4,0.5,-0.5);
 //        sleep(200);
 //        move(0.5,-0.5,-0.5);
-
-
+        //park right
+        move(0.4,0.3,0.3);
+        move(1.4,0.5,0.3);
+        move(0.7,0.7,0.7);
     }
 
     public void driveCenter() {
-      CLOSECLAW();
-      move(1.7, -0.4, -0.4);
-      sleep(500);
-      move(0.3,0.5,0.5);
+        CLOSECLAW();
+        move(1.7, -0.4, -0.4);
+        sleep(500);
+        move(0.3,0.5,0.5);
 //      move(1.25,0.5,-0.5);
 //      SCORETILT();
 //      usePitch(-1,800);
@@ -180,6 +184,10 @@ public class BlueAuto extends LinearOpMode {
 //      OPENCLAW();
 //      move(1.3,-0.5,0.5);
 //      move(1,-0.5,-0.5);
+        //park right
+        move(0.4,0.3,0.3);
+        move(1.4,0.5,0.3);
+        move(0.7,0.7,0.7);
     }
 
 
