@@ -165,7 +165,7 @@ public class AutoRedUpstageRight extends LinearOpMode {
         sleep(300);
         move(.6,-0.1,0.1);
         sleep(400);
-        move(.7,-0.1,-0.1);
+        move(.62,-0.1,-0.1);
         OPENCLAW();
         sleep(500);
         move(.3,0.5,0.5);

@@ -111,12 +111,15 @@ public class AutoBlueUpstageRight extends LinearOpMode {
         boolean noCube = false;
         if (cX < leftThreshold) {
             telemetry.addLine("driving left");
+            webcam1.stopStreaming();
             driveLeft();
         } else if (cX > rightThreshold || noCube == true) {
             telemetry.addLine("driving right");
+            webcam1.stopStreaming();
             driveRight();
         } else if (cX < rightThreshold && cX > leftThreshold) {
             telemetry.addLine("driving center");
+            webcam1.stopStreaming();
             driveCenter();
         }
     }
@@ -135,15 +138,15 @@ public class AutoBlueUpstageRight extends LinearOpMode {
         usePitch(-1,800);
         move(1.9, -0.5, -0.5);
         sleep(300);
-        move(0.6,0.25,-0.25);
+        move(0.5,0.25,-0.25);
         sleep(100);
         move(0.6,-0.5,-0.5);
         OPENCLAW();
         sleep(300);
         //park right
         move(0.4,0.3,0.3);
-        move(1.4,0.3,-0.3);
-        move(0.7,-0.7,-0.7);
+        move(1.4,-0.3,0.3);
+        move(0.7,-0.9,-0.9);
 
     }
 
@@ -171,17 +174,18 @@ public class AutoBlueUpstageRight extends LinearOpMode {
     }
 
     public void driveCenter() {
-      CLOSECLAW();
-      move(1.7, -0.4, -0.4);
-      sleep(500);
-      move(0.3,0.5,0.5);
-      move(1.25,0.5,-0.5);
-      SCORETILT();
-      usePitch(-1,800);
-      move(2.4,-0.3,-0.3);
-      OPENCLAW();
-      move(1.3,0.5,-0.5);
-      move(1,-0.7,-0.7);
+        CLOSECLAW();
+        move(1.7, -0.4, -0.4);
+        sleep(500);
+        move(0.3,0.5,0.5);
+        move(1.35,0.5,-0.5);
+        SCORETILT();
+        usePitch(-1,800);
+        move(2.4,-0.3,-0.3);
+        OPENCLAW();
+        //left parking
+        move(1.3,-0.5,0.5);
+        move(1,-0.5,-0.5);
     }
 
 
