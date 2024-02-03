@@ -31,8 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-// THIS CODE IS NOT COMPLETE
-
 
 @Autonomous
 public class AutoRedUpstageLeft extends LinearOpMode {

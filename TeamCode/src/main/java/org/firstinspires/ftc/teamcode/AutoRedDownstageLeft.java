@@ -111,12 +111,15 @@ public class AutoRedDownstageLeft extends LinearOpMode {
         double noCube = 0;
         if (cX < leftThreshold) {
             telemetry.addData("driving","left");
+            webcam1.stopStreaming();
             driveLeft();
         } else if (cX > rightThreshold || cX < noCube) {
             telemetry.addLine("driving right");
+            webcam1.stopStreaming();
             driveRight();
         } else if (cX < rightThreshold && cX > leftThreshold) {
             telemetry.addLine("driving center");
+            webcam1.stopStreaming();
             driveCenter();
         }
     }
@@ -128,11 +131,18 @@ public class AutoRedDownstageLeft extends LinearOpMode {
         move(0.6, -0.5, 0.5);
         move(0.5, -0.5, -0.5);
         sleep(300);
-        move(0.55, 0.5, 0.5);
+        move(0.5, 0.5, 0.5);
         sleep(300);
         move(0.6, 0.5, -0.5);
-        move(0.8, -0.5, 0.5);
-        move(0.8, 0.5, 0.5);
+        move(0.6, 0.5, 0.5);
+        move(1.45, -0.5, 0.5);
+        // move(5.5, -0.5, -0.5);
+        sleep(2000);
+        move(4.1,-0.5,-0.5);
+        move(1.2, 0.3, -0.3);
+        move(2.3,-0.5,-0.5);
+        move(1.2, -0.3, 0.3);
+        move(0.5, -0.5, -0.5);
 //
     }
 
@@ -143,6 +153,17 @@ public class AutoRedDownstageLeft extends LinearOpMode {
         move(0.45,0.3,-0.4);
         sleep(300);
         move(0.65,-0.5,-0.5);
+        move(0.65,0.5,0.5);
+        move(0.41,-0.3 ,0.4);
+        move(0.5, 0.5, 0.5);
+        move(1.45, -0.5, 0.5);
+        //move(5.5, -0.5, -0.5);
+        sleep(2000);
+        move(4.1,-0.5,-0.5);
+        move(1.2, 0.3, -0.3);
+        move(2.3,-0.5,-0.5);
+        move(1.2, -0.3, 0.3);
+        move(0.5, -0.5, -0.5);
 //        sleep(300);
 //        move(0.85, 0.5, 0.5);
 //        sleep(300);
@@ -169,7 +190,15 @@ public class AutoRedDownstageLeft extends LinearOpMode {
         move(1.7, -0.4, -0.4);
         sleep(500);
         move(0.3,0.5,0.5);
-        move(1.0, -0.5, -0.5);
+        move(1.0, 0.5, 0.5);
+        move(1.35, -0.5, 0.5);
+        // move(5.5, -0.5, -0.5);
+        sleep(2000);
+        move(4.1,-0.5,-0.5);
+        move(1.2, 0.3, -0.3);
+        move(2.3,-0.5,-0.5);
+        move(1.2, -0.3, 0.3);
+        move(0.5, -0.5, -0.5);
 //        move(1.3,-0.5,0.5);
 //        SCORETILT();
 //        usePitch(-1,800);
