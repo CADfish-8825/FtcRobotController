@@ -17,6 +17,8 @@ import com.qualcomm.robotcore.hardware.Servo;
         public DcMotor slide;
         public Servo claw;
         public Servo tilt;
+        public Servo launch;
+
         final float normalPower = 0.7f;
         final float lowerPower = 0.4f;
 
@@ -44,6 +46,7 @@ import com.qualcomm.robotcore.hardware.Servo;
             slide = hardwareMap.get(DcMotor.class, "slideMotor");
             tilt = hardwareMap.get(Servo.class, "tilt");
             claw = hardwareMap.get(Servo.class,"Claw");
+            launch = hardwareMap.get(Servo.class, "launch");
 
 
             waitForStart();
@@ -194,7 +197,7 @@ import com.qualcomm.robotcore.hardware.Servo;
                     }
                     //launch drone
                     if (gamepad1.y) {
-
+                        launch.setPosition(200);
                     }
                     //set engine to power in hanging
 //                    if (gamepad1.right_trigger) {
