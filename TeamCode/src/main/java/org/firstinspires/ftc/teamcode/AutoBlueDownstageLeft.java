@@ -110,12 +110,15 @@ public class AutoBlueDownstageLeft extends LinearOpMode {
         //boolean noCube = false;
         if (cX < leftThreshold) {
             telemetry.addLine("driving left");
+            webcam1.stopStreaming();
             driveLeft();
         } else if (cX > rightThreshold /*|| noCube == true*/) {
             telemetry.addLine("driving right");
+            webcam1.stopStreaming();
             driveRight();
         } else if (cX < rightThreshold && cX > leftThreshold) {
             telemetry.addLine("driving center");
+            webcam1.stopStreaming();
             driveCenter();
         }
     }
@@ -129,25 +132,12 @@ public class AutoBlueDownstageLeft extends LinearOpMode {
         sleep(300);
         move(0.55, 0.5, 0.5);
         sleep(300);
+        move(0.6, 0.5, -0.5);
+        move(0.5, 0.5,0.5);
+        move(1.2, 0.3, -0.3);
+        sleep(200);
+        move(5.3,-0.5,-0.5);
 
-        //park left
-        //move(0.4,0.3,0.3);
-        turnTo(60);
-       // move(1,0.5,0.5);
-
-        //        move( 1.4, 0.5,-0.5);
-//        SCORETILT();
-//        usePitch(-1,800);
-//        move(1.9, -0.5, -0.5);
-//        sleep(300);
-//        move(0.6,0.25,-0.25);
-//        sleep(100);
-//        move(0.6,-0.5,-0.5);
-//        OPENCLAW();
-//        sleep(300);
-//        move(0.4,0.3,0.3);
-//        move(1.4,-0.3,0.3);
-//        move(0.7,-0.5,-0.5);
     }
 
     public void driveLeft() {
@@ -163,36 +153,19 @@ public class AutoBlueDownstageLeft extends LinearOpMode {
         sleep(200);
         move(5.5,-0.5,-0.5);
 
-        //move(0.65, 0.5, -0.5);
-//        SCORETILT();
-//        usePitch(-1,800);
-//        move(2.3,-0.5,-0.5);
-//        sleep(400);
-//        OPENCLAW();
-//        sleep(500);
-//        move(.3,0.5,0.5);
-//        move(1.4,0.5,-0.5);
-//        sleep(200);
-//        move(0.5,-0.5,-0.5);
 
     }
 
     public void driveCenter() {
-      CLOSECLAW();
-      move(1.7, -0.4, -0.4);
-      sleep(500);
-      move(0.3,0.5,0.5);
-//      move(1.25,0.5,-0.5);
-//      SCORETILT();
-//      usePitch(-1,800);
-//      move(2.4,-0.3,-0.3);
-//      OPENCLAW();
-//      move(1.3,-0.5,0.5);
-//      move(1,-0.5,-0.5);
-        //left parking
-        //move(0.4,0.5,0.5);
-        turn(60);
-        //move(1,0.5,0.5);
+        CLOSECLAW();
+        move(1.7, -0.4, -0.4);
+        sleep(500);
+        move(1.5,0.5,0.5);
+        move(1.25,0.5,-0.5);
+        sleep(1000);
+        move(5.4,-0.3,-0.3);
+
+
     }
 
 

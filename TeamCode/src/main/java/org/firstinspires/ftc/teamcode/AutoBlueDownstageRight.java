@@ -32,6 +32,7 @@ import java.util.List;
 
 @Autonomous
 public class AutoBlueDownstageRight extends LinearOpMode {
+
     OpenCvWebcam webcam1 = null;
     double cX = -1; // Use -1 to indicate no detection initially
     public DcMotor FL;
@@ -85,7 +86,7 @@ public class AutoBlueDownstageRight extends LinearOpMode {
 
         webcam1 = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
 
-        webcam1.setPipeline(new AutoBlueDownstageRight.BlueCubePipeline());
+        webcam1.setPipeline(new BlueCubePipeline());
 
         webcam1.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             public void onOpened() {
@@ -104,18 +105,20 @@ public class AutoBlueDownstageRight extends LinearOpMode {
             }
         }
     }
-//}
-
+    //}
     public void driveCamera(double cX) {
-        boolean noCube = false;
+        //boolean noCube = false;
         if (cX < leftThreshold) {
             telemetry.addLine("driving left");
+            webcam1.stopStreaming();
             driveLeft();
-        } else if (cX > rightThreshold || noCube == true) {
+        } else if (cX > rightThreshold /*|| noCube == true*/) {
             telemetry.addLine("driving right");
+            webcam1.stopStreaming();
             driveRight();
         } else if (cX < rightThreshold && cX > leftThreshold) {
             telemetry.addLine("driving center");
+            webcam1.stopStreaming();
             driveCenter();
         }
     }
@@ -129,23 +132,16 @@ public class AutoBlueDownstageRight extends LinearOpMode {
         sleep(300);
         move(0.55, 0.5, 0.5);
         sleep(300);
-//        move( 1.4, 0.5,-0.5);
-//        SCORETILT();
-//        usePitch(-1,800);
-//        move(1.9, -0.5, -0.5);
-//        sleep(300);
-//        move(0.6,0.25,-0.25);
-//        sleep(100);
-//        move(0.6,-0.5,-0.5);
-//        OPENCLAW();
-//        sleep(300);
-//        move(0.4,0.3,0.3);
-//        move(1.4,-0.3,0.3);
-//        move(0.7,-0.5,-0.5);
-        //park right
-        move(0.4,0.3,0.3);
-        move(1.4,0.5,0.3);
-        move(0.7,0.7,0.7);
+        move(0.6, 0.5, -0.5);
+        move(0.5, 0.5,0.5);
+        move(1.2, 0.3, -0.3);
+        sleep(2000);
+        move(4.1,-0.5,-0.5);
+        move(1.2, -0.3, 0.3);
+        move(2.1,-0.5,-0.5);
+        move(1.2, 0.3, -0.3);
+        move(1.1, -0.5, -0.5);
+
     }
 
     public void driveLeft() {
@@ -154,40 +150,32 @@ public class AutoBlueDownstageRight extends LinearOpMode {
         move(0.6,0.5,-0.5);
         move(0.5,-0.5,-0.5);
         sleep(300);
-        move(0.4, 0.5, 0.5);
-//        move(0.65, 0.5, -0.5);
-//        SCORETILT();
-//        usePitch(-1,800);
-//        move(2.3,-0.5,-0.5);
-//        sleep(400);
-//        OPENCLAW();
-//        sleep(500);
-//        move(.3,0.5,0.5);
-//        move(1.4,0.5,-0.5);
-//        sleep(200);
-//        move(0.5,-0.5,-0.5);
-        //park right
-        move(0.4,0.3,0.3);
-        move(1.4,0.5,0.3);
-        move(0.7,0.7,0.7);
+        move(1.35, 0.5, 0.5);
+//
+        //left parking
+        move(0.7, 0.3, -0.3);
+        sleep(2000);
+        move(4.5,-0.5,-0.5);
+        move(1.2, -0.3, 0.3);
+        move(2.4,-0.5,-0.5);
+        move(1.2, 0.3, -0.3);
+        move(0.8, -0.5, -0.5);
+
+
     }
 
     public void driveCenter() {
         CLOSECLAW();
         move(1.7, -0.4, -0.4);
         sleep(500);
-        move(0.3,0.5,0.5);
-//      move(1.25,0.5,-0.5);
-//      SCORETILT();
-//      usePitch(-1,800);
-//      move(2.4,-0.3,-0.3);
-//      OPENCLAW();
-//      move(1.3,-0.5,0.5);
-//      move(1,-0.5,-0.5);
-        //park right
-        move(0.4,0.3,0.3);
-        move(1.4,0.5,0.3);
-        move(0.7,0.7,0.7);
+        move(1.5,0.5,0.5);
+        move(1.25,0.5,-0.5);
+        sleep(2000);
+        move(4.1,-0.5,-0.5);
+        move(1.2, -0.3, 0.3);
+        move(2.6,-0.5,-0.5);
+        move(1.2, 0.3, -0.3);
+        move(0.8, -0.5, -0.5);
     }
 
 
