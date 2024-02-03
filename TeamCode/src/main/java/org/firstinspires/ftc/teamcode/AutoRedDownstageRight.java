@@ -30,12 +30,8 @@ import org.openftc.easyopencv.OpenCvWebcam;
 import java.util.ArrayList;
 import java.util.List;
 
-
-// THIS CODE IS NOT COMPLETE
-
-
 @Autonomous
-public class AutoRedUpstageLeft extends LinearOpMode {
+public class AutoRedDownstageRight extends LinearOpMode {
 
     OpenCvWebcam webcam1 = null;
     double cX = -1; // Use -1 to indicate no detection initially
@@ -92,7 +88,6 @@ public class AutoRedUpstageLeft extends LinearOpMode {
 
         webcam1.setPipeline(new RedCubePipeline());
 
-
         webcam1.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             public void onOpened() {
                 webcam1.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
@@ -136,22 +131,13 @@ public class AutoRedUpstageLeft extends LinearOpMode {
         move(0.6, -0.5, 0.5);
         move(0.5, -0.5, -0.5);
         sleep(300);
-        move(0.55, 0.5, 0.5);
+        move(0.5, 0.5, 0.5);
         sleep(300);
-        move( 0.7, -0.5,0.5);
-        SCORETILT();
-        usePitch(-1,800);
-        move(1.9, -0.5, -0.5);
-        sleep(300);
-        move(0.2,-0.25,0.25);
-        sleep(100);
-        move(0.45,-0.5,-0.5);
-        OPENCLAW();
-
-        sleep(300);
-        move(0.4,0.3,0.3);
-        move(1.4,-0.3,0.3);
-        move(0.7,-0.7,-0.7);
+        move(0.6, 0.5, -0.5);
+        move(0.6, 0.5, 0.5);
+        move(1.45, -0.5, 0.5);
+        move(5.5, -0.5, -0.5);
+//
     }
 
     public void driveLeft() {
@@ -161,24 +147,29 @@ public class AutoRedUpstageLeft extends LinearOpMode {
         move(0.45,0.3,-0.4);
         sleep(300);
         move(0.65,-0.5,-0.5);
-        sleep(300);
-        move(0.85, 0.5, 0.5);
-        sleep(300);
-        move(1.6, -0.5, 0.3);
-        SCORETILT();
-        usePitch(-1,900);
-        move(1.8,-0.5,-0.5);
-        sleep(300);
-        move(.6,-0.1,0.1);
-        sleep(400);
-        move(.6,-0.1,-0.1);
-        OPENCLAW();
+        move(0.65,0.5,0.5);
+        move(0.41,-0.3 ,0.4);
+        move(0.5, 0.5, 0.5);
+        move(1.45, -0.5, 0.5);
+        move(5.5, -0.5, -0.5);
 
-        sleep(500);
-        move(.3,0.5,0.5);
-        move(1.3,-0.5,0.5);
-        sleep(200);
-        move(1.3,-0.7,-0.7);
+//        sleep(300);
+//        move(0.85, 0.5, 0.5);
+//        sleep(300);
+//        move(1.6, -0.5, 0.3);
+//        SCORETILT();
+//        usePitch(-1,900);
+//        move(1.8,-0.5,-0.5);
+//        sleep(300);
+//        move(.6,-0.1,0.1);
+//        sleep(400);
+//        move(.7,-0.1,-0.1);
+//        OPENCLAW();
+//        sleep(500);
+//        move(.3,0.5,0.5);
+//        move(1.3,0.5,-0.5);
+//        sleep(200);
+//        move(0.7,-0.5,-0.5);
 
 
     }
@@ -188,13 +179,16 @@ public class AutoRedUpstageLeft extends LinearOpMode {
         move(1.7, -0.4, -0.4);
         sleep(500);
         move(0.3,0.5,0.5);
-        move(1.3,-0.5,0.5);
-        SCORETILT();
-        usePitch(-1,800);
-        move(2.4,-0.3,-0.3);
-        OPENCLAW();
-        move(1.3,-0.5,0.5);
-        move(1,-0.5,-0.5);
+        move(1.0, 0.5, 0.5);
+        move(1.35, -0.5, 0.5);
+        move(5.5, -0.5, -0.5);
+//        move(1.3,-0.5,0.5);
+//        SCORETILT();
+//        usePitch(-1,800);
+//        move(2.4,-0.3,-0.3);
+//        OPENCLAW();
+//        move(1.3,0.5,-0.5);
+//        move(1,-0.5,-0.5);
     }
 
 
